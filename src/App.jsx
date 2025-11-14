@@ -14,12 +14,13 @@ function App() {
   const [addedProducts, setAddedProducts] = useState([]);
   /*
 Per ogni prodotto della lista, aggiungi un bottone "Aggiungi al carrello":
-*/
-  function addToCart() {
-    console.log("it's just a click");
-  }
-  /*
 Al click del bottone, usa una funzione addToCart per:
+*/
+  const addToCart = (product) => {
+    setAddedProducts([...addedProducts, { ...product, quantity: 1 }]);
+  };
+  /*
+
 Aggiungere il prodotto al carrello se non è già presente, con una proprietà quantity = 1.
 Se il prodotto è già nel carrello, ignora l’azione.
 Sotto alla lista dei prodotti, mostra una lista dei prodotti nel carrello se addedProducts contiene almeno un elemento.
@@ -46,7 +47,7 @@ Obiettivo: L’utente può aggiungere prodotti al carrello e vedere una lista de
                   <button
                     type="button"
                     className="btn btn-secondary my-1"
-                    onClick={addToCart}
+                    onClick={() => addToCart(p)}
                   >
                     aggiungi alla lista
                   </button>
@@ -61,7 +62,13 @@ Obiettivo: L’utente può aggiungere prodotti al carrello e vedere una lista de
             {!addedProducts
               ? null
               : addedProducts.map((a, index) => {
-                  return <li></li>;
+                  return (
+                    <li key={index}>
+                      <p>Nome: {a.name}</p>
+                      <p>Prezzo: {a.price}</p>
+                      <p>quantità: {a.quantity}</p>
+                    </li>
+                  );
                 })}
           </ul>
         </div>
