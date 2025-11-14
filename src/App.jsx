@@ -17,6 +17,8 @@ Per ogni prodotto della lista, aggiungi un bottone "Aggiungi al carrello":
 Al click del bottone, usa una funzione addToCart per:
 */
   const addToCart = (product) => {
+    const alreadyinCart = addedProducts.some((a) => a.name === product.name);
+    if (alreadyinCart) return null;
     setAddedProducts([...addedProducts, { ...product, quantity: 1 }]);
   };
   /*
