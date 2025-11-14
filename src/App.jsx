@@ -8,28 +8,61 @@ function App() {
     { name: "Pasta", price: 0.7 },
   ];
 
-  const [product, setProducts] = useState(products);
-  /**Crea un componente che mostra la lista dei prodotti.
-Per ogni prodotto, mostra:
+  /**📌 Milestone 2:
+   *  Aggiungere prodotti al carrello
+  Aggiungi uno stato locale addedProducts (inizialmente un array vuoto) per rappresentare i prodotti nel carrello.*/
+  const [addedProducts, setAddedProducts] = useState([]);
+  /*
+Per ogni prodotto della lista, aggiungi un bottone "Aggiungi al carrello":
+*/
+  function addToCart() {
+    console.log("it's just a click");
+  }
+  /*
+Al click del bottone, usa una funzione addToCart per:
+Aggiungere il prodotto al carrello se non è già presente, con una proprietà quantity = 1.
+Se il prodotto è già nel carrello, ignora l’azione.
+Sotto alla lista dei prodotti, mostra una lista dei prodotti nel carrello se addedProducts contiene almeno un elemento.
+Per ogni prodotto nel carrello, mostra:
 Nome
 Prezzo
+Quantità
 
-Obiettivo: Vedere un elenco leggibile di tutti i prodotti con nome e prezzo. */
+Obiettivo: L’utente può aggiungere prodotti al carrello e vedere una lista dei prodotti aggiunti. */
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="row d-flex">
-        <div className="col-12  my-2">
-          <h1 className="my-2">Elenco dei prodotti per nome e prezzo</h1>
-          <ul className="d-flex flex-column">
+        <div className="col-12  my-5 border border-secondary">
+          <h1 className="my-5 border border-secondary">
+            Elenco dei prodotti per nome e prezzo
+          </h1>
+          <ul className="d-flex flex-column border border-secondary">
             {products.map((p, index) => {
               return (
-                <li className="d-flex" key={index}>
-                  <p className="col-3  my-2">Nome: {p.name}</p>
-                  <p className="col-3  my-2">Prezzo: {p.price}</p>
+                <li className="d-flex my-2 col-8" key={index}>
+                  <p className="col-3">Nome: {p.name}</p>
+                  <p className="col-3">Prezzo: {p.price}</p>
+                  <button
+                    type="button"
+                    className="btn btn-secondary my-1"
+                    onClick={addToCart}
+                  >
+                    aggiungi alla lista
+                  </button>
                 </li>
               );
             })}
+          </ul>
+        </div>
+        <div className="col-12 border border-secondary">
+          <h1>Carrello con i prodotti aggiunti</h1>
+          <ul className="d-flex flex-column border border-secondary">
+            {!addedProducts
+              ? null
+              : addedProducts.map((a, index) => {
+                  return <li></li>;
+                })}
           </ul>
         </div>
       </div>
