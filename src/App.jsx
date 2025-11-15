@@ -22,12 +22,12 @@ Al click del bottone, usa una funzione addToCart per:
     setAddedProducts([...addedProducts, { ...product, quantity: 1 }]);
   };
 
-  const removeFromCart = (product) => {
-    console.log("just a check");
+  const removeFromCart = (index) => {
+    return setAddedProducts(addedProducts.filter((p, i) => i !== index));
   };
 
-  const updateProductQuantity = (product) => {
-    console.log("just a check");
+  const updateProductQuantity = (product, index) => {
+    console.log("just a click");
   };
   /*
 
@@ -71,7 +71,7 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
             {!addedProducts
               ? null
               : addedProducts.map((product, index) => {
-                  console.log(addedProducts);
+                  console.log({ addedProducts });
                   return (
                     <li key={index}>
                       <p>Nome: {product.name}</p>
@@ -80,14 +80,14 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
                       <button
                         type="button"
                         className="btn btn-secondary mx-2"
-                        onClick={() => updateProductQuantity(product)}
+                        onClick={() => updateProductQuantity(product, index)}
                       >
                         aumenta
                       </button>
                       <button
                         type="button"
                         className="btn btn-secondary mx-2"
-                        onClick={() => removeFromCart(product)}
+                        onClick={() => removeFromCart(index)}
                       >
                         Rimuovi
                       </button>
