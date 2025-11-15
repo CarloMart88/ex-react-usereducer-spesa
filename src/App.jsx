@@ -26,8 +26,11 @@ Al click del bottone, usa una funzione addToCart per:
     return setAddedProducts(addedProducts.filter((p, i) => i !== index));
   };
 
-  const updateProductQuantity = (product, index) => {
-    console.log("just a click");
+  const updateProductQuantity = (index) => {
+    const isUpdate = addedProducts.map((p, i) =>
+      i === index ? { ...p, quantity: p.quantity + 1 } : p
+    );
+    setAddedProducts(isUpdate);
   };
   /*
 
@@ -80,7 +83,7 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
                       <button
                         type="button"
                         className="btn btn-secondary mx-2"
-                        onClick={() => updateProductQuantity(product, index)}
+                        onClick={() => updateProductQuantity(index)}
                       >
                         aumenta
                       </button>
