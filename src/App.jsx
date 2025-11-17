@@ -9,11 +9,16 @@ function cartReducer(addedProducts, action) {
       const alreadyinCart = addedProducts.some(
         (a) => a.name === action.payload.name
       );
-      if (alreadyinCart) return action.payload;
-      setAddedProducts([...addedProducts, { ...action.payload, quantity: 1 }]);
+      if (alreadyinCart) {
+        return action.payload;
+      } else {
+        [...addedProducts, { ...action.payload, quantity: 1 }];
+      }
 
     case "REMOVE_ITEM":
-    // Logica per rimuovere un prodotto
+      // Logica per rimuovere un prodotto
+
+      return addedProducts.filter((p, i) => i !== action.payload);
 
     case "UPDATE_QUANTITY":
     // Logica per aggiornare la quantità
