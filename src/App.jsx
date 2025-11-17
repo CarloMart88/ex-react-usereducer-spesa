@@ -10,9 +10,9 @@ function cartReducer(addedProducts, action) {
         (a) => a.name === action.payload.name
       );
       if (alreadyinCart) {
-        return action.payload;
+        return addedProducts;
       } else {
-        [...addedProducts, { ...action.payload, quantity: 1 }];
+        return [...addedProducts, { ...action.payload, quantity: 1 }];
       }
 
     case "REMOVE_ITEM":
@@ -111,7 +111,6 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
             {!addedProducts
               ? null
               : addedProducts.map((product, index) => {
-                  console.log({ addedProducts });
                   return (
                     <li key={index}>
                       <p>Name: {product.name}</p>
