@@ -34,9 +34,8 @@ function App() {
 
   const [addedProducts, dispatchCart] = useReducer(cartReducer, []);
   /*
-Per ogni prodotto della lista, aggiungi un bottone "Aggiungi al carrello":
-Al click del bottone, usa una funzione addToCart per:
-*/
+adesso devo importare tutta la logica nel cartReducer ma prima vado nel codice dove metto il dispatchCart e mi definisco i vari payload
+
   const addToCart = (product) => {
     const alreadyinCart = addedProducts.some((a) => a.name === product.name);
     if (alreadyinCart) return null;
@@ -80,7 +79,9 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
                   <button
                     type="button"
                     className="btn btn-warning my-1"
-                    onClick={() => addToCart(product)}
+                    onClick={() =>
+                      dispatchCart({ type: "ADD_ITEM", payload: product })
+                    }
                   >
                     🌰 Add to your list 🌰
                   </button>
@@ -104,14 +105,21 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
                       <button
                         type="button"
                         className="btn btn-warning mx-2"
-                        onClick={() => updateProductQuantity(index)}
+                        onClick={() =>
+                          dispatchCart({
+                            type: "UPDATE_QUANTITY",
+                            payload: index,
+                          })
+                        }
                       >
                         Add
                       </button>
                       <button
                         type="button"
                         className="btn btn-warning mx-2"
-                        onClick={() => removeFromCart(index)}
+                        onClick={() =>
+                          dispatchCart({ type: "REMOVE_ITEM", payload: index })
+                        }
                       >
                         Remove
                       </button>
