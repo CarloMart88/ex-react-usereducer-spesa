@@ -1,19 +1,25 @@
 import { useState } from "react";
 import { useReducer } from "react";
-//prendo il cartReducer fornito e importo useReducer da react
-function cartReducer(state, action) {
+//prendo il cartReducer fornito e importo useReducer da react e cambio lo state con addedProducts
+function cartReducer(addedProducts, action) {
   switch (action.type) {
     case "ADD_ITEM":
       // Logica per aggiungere un prodotto
-      break;
+
+      const alreadyinCart = addedProducts.some(
+        (a) => a.name === action.payload.name
+      );
+      if (alreadyinCart) return action.payload;
+      setAddedProducts([...addedProducts, { ...action.payload, quantity: 1 }]);
+
     case "REMOVE_ITEM":
-      // Logica per rimuovere un prodotto
-      break;
+    // Logica per rimuovere un prodotto
+
     case "UPDATE_QUANTITY":
-      // Logica per aggiornare la quantità
-      break;
+    // Logica per aggiornare la quantità
+
     default:
-      return state;
+      return addedProducts;
   }
 }
 
