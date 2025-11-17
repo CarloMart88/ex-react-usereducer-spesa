@@ -27,8 +27,12 @@ function App() {
 
   /**📌 Milestone 2:
    *  Aggiungere prodotti al carrello
-  Aggiungi uno stato locale addedProducts (inizialmente un array vuoto) per rappresentare i prodotti nel carrello.*/
-  const [addedProducts, setAddedProducts] = useState([]);
+  Aggiungi uno stato locale addedProducts (inizialmente un array vuoto) per rappresentare i prodotti nel carrello.
+  
+  Trasformo lo useState  const [addedProducts, setAddedProducts] = useState([]); e uso adesso cartReducer
+  dispatchCart lo inserirò nel codice con il type e il payload mentre userò useReducer e lo state iniziale che è un array vuoto*/
+
+  const [addedProducts, dispatchCart] = useReducer(cartReducer, []);
   /*
 Per ogni prodotto della lista, aggiungi un bottone "Aggiungi al carrello":
 Al click del bottone, usa una funzione addToCart per:
