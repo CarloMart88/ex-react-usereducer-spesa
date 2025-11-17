@@ -99,6 +99,16 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
                 })}
           </ul>
         </div>
+        <div className="row d-flex my-5 border border-secondary">
+          <div className="col-5">
+            <h3>
+              il tuo Totale
+              {addedProducts.reduce((acc, val) => {
+                return (acc + val.price) * val.quantity;
+              }, 0)}
+            </h3>
+          </div>
+        </div>
       </div>
     </div>
   );
