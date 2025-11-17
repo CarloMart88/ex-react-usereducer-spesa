@@ -103,9 +103,11 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
           <div className="col-5">
             <h3>
               il tuo Totale
-              {addedProducts.reduce((acc, val) => {
-                return (acc + val.price * val.quantity).toFixed(2);
-              }, 0)}
+              {addedProducts
+                .reduce((acc, val) => {
+                  return acc + val.price * val.quantity;
+                }, 0)
+                .toFixed(2)}
             </h3>
           </div>
         </div>
