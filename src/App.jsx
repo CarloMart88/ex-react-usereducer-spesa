@@ -46,68 +46,69 @@ Obiettivo: Gestire l’aggiunta, la rimozione e il calcolo del totale del carrel
   return (
     <div className="container ">
       <div className="row d-flex">
-        <div className="col-12  my-5 border border-secondary">
-          <h1 className="my-5 border border-secondary">
-            Elenco dei prodotti per nome e prezzo
+        <div className="col-12  my-5 border border-danger-subtle">
+          <h1 className="my-5 border border-danger-subtle">
+            🍁🍂 Autumn Shop 🍁🍂{" "}
           </h1>
-          <ul className="d-flex flex-column border border-secondary">
+          <ul className="d-flex flex-column border border-danger-subtle">
             {products.map((product, index) => {
               return (
                 <li className="d-flex my-2 col-8" key={index}>
-                  <p className="col-3">Nome: {product.name}</p>
-                  <p className="col-3">Prezzo: {product.price}</p>
+                  <p className="col-3">Name: {product.name}</p>
+                  <p className="col-3">Price: {product.price}$ </p>
                   <button
                     type="button"
-                    className="btn btn-secondary my-1"
+                    className="btn btn-warning my-1"
                     onClick={() => addToCart(product)}
                   >
-                    aggiungi alla lista
+                    🌰 Add to your list 🌰
                   </button>
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="col-12 border border-secondary">
-          <h1>Carrello con i prodotti aggiunti</h1>
-          <ul className="d-flex flex-column border border-secondary">
+        <div className="col-12 border border-danger-subtle">
+          <h1>🥧Your cart🥧</h1>
+          <ul className="d-flex flex-column border border-danger-subtle">
             {!addedProducts
               ? null
               : addedProducts.map((product, index) => {
                   console.log({ addedProducts });
                   return (
                     <li key={index}>
-                      <p>Nome: {product.name}</p>
-                      <p>Prezzo: {product.price}</p>
-                      <p>quantità: {product.quantity}</p>
+                      <p>Name: {product.name}</p>
+                      <p>Price: {product.price}$</p>
+                      <p>Quantity: {product.quantity}</p>
                       <button
                         type="button"
-                        className="btn btn-secondary mx-2"
+                        className="btn btn-warning mx-2"
                         onClick={() => updateProductQuantity(index)}
                       >
-                        aumenta
+                        Add
                       </button>
                       <button
                         type="button"
-                        className="btn btn-secondary mx-2"
+                        className="btn btn-warning mx-2"
                         onClick={() => removeFromCart(index)}
                       >
-                        Rimuovi
+                        Remove
                       </button>
                     </li>
                   );
                 })}
           </ul>
         </div>
-        <div className="row d-flex my-5 border border-secondary">
-          <div className="col-5">
-            <h3>
-              il tuo Totale
+        <div className="row d-flex my-5 border border-danger-subtle">
+          <div className="col-5 mt-3">
+            <h3 className="d-flex">
+              <p className="mx-1">Total:</p>
               {addedProducts
                 .reduce((acc, val) => {
                   return acc + val.price * val.quantity;
                 }, 0)
                 .toFixed(2)}
+              $
             </h3>
           </div>
         </div>
