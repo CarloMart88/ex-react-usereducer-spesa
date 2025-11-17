@@ -21,7 +21,11 @@ function cartReducer(addedProducts, action) {
       return addedProducts.filter((p, i) => i !== action.payload);
 
     case "UPDATE_QUANTITY":
-    // Logica per aggiornare la quantità
+      // Logica per aggiornare la quantità
+
+      return addedProducts.map((p, i) =>
+        i === action.payload ? { ...p, quantity: p.quantity + 1 } : p
+      );
 
     default:
       return addedProducts;
